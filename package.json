@@ -1,0 +1,14 @@
+{
+  "name": "chartbox",
+  "version": "1.0.0",
+  "description": "This is a test project to see what is my level of nodejs programming",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "AmirMohammad",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^8.8.0"
+  }
+}
