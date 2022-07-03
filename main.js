@@ -84,6 +84,8 @@ wss.on('connection', (client) => {
 });
 
 
+
+// Interval zadan tebghe tajrobe man ziad khoob nist chon bazi oghat momkene yeho dead beshan vali inja use kardam bara test
 setInterval(() => {
 
 	console.log(`Checking Users ...`)
