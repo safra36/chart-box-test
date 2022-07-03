@@ -50,7 +50,7 @@ ws.on('message', function message(data) {
 
 
 
-const wss = new Websocket.Server({ port: 8080 });
+const wss = new Websocket.Server({ port: 8181 });
 
 wss.on('connection', (client) => {
 
@@ -60,12 +60,42 @@ wss.on('connection', (client) => {
 		var authData = JSON.parse(data);
 		if(authData.code != undefined && authData.code == "abcd")
 		{
-			console.log(`Client Accepted!`);
-			authorizied_users.push({
-				socket:client,
-				time: new Date().getTime()
-			})
+
+			var userObject = authorizied_users.find(_user => _user.socket == client);
+			if(userObject == undefined)
+			{
+				console.log(`Client Accepted!`);
+				authorizied_users.push({
+					socket:client,
+					time: new Date().getTime()
+				})
+			}
+			else
+			{
+				console.log(`client time updated`);
+				userObject.time = new Date().getTime();
+
+			}
+
+			
 		}
 
 	});
 });
+
+
+setInterval(() => {
+
+	console.log(`Checking Users ...`)
+	for(var x = authorizied_users.length-1;x>=0;x--)
+	{
+		var userObject = authorizied_users[x];
+		if((new Date().getTime() - parseInt(userObject.time)) > 5000)
+		{
+			userObject.socket.close();
+			authorizied_users.splice(x, 1);
+		}
+	}
+
+
+}, 1000);
