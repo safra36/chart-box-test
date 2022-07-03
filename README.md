@@ -2,4 +2,4 @@
 This is a test project for chart box
 
 
-# Please Use npm install before starting since i added that folder to .gitignore file
+# Please Use npm install before starting since i added node_modules folder to .gitignore file
